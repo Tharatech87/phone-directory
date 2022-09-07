@@ -1,0 +1,24 @@
+create database PD;
+USE PD;
+Create table Organization_details
+(organization_name varchar(20) not null,
+ organization_no int primary key);
+ 
+Create table Login
+( email_id int , pwd varchar(30) not null, 
+primary key(email_id), organization_no int, foreign key(organization_no)
+ references Organization_details(organization_no));
+
+
+create table User(user_id int primary key,first_name varchar(20) not null,last_name varchar(20) not null, 
+email_id int , foreign key (email_id) references login(email_id),
+ dept_id int , foreign key (dept_id) references department(dept_id));
+
+create table department( dept_id int primary key, dept_name varchar(20) not null);
+
+create table address(id int ,doorno int,streetname varchar(20) not null,
+city varchar(20) not null,country varchar(20) not null,pincode int not null,foreign key(id) references User(user_id));
+
+create table contact_details(id int, offemail_id varchar(30) not null,phone_no int primary key,
+foreign key(id) references User(user_id)
+);
